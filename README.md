@@ -1,4 +1,4 @@
-# rainbow
+# serviceTaxi
 
 ## Project setup
 ```
