@@ -8,7 +8,7 @@ let store = new Vuex.Store({
     state: {
         auth: false,
         cars: [],
-        organizations: [],
+        drivers: [],
         users: []
     },
     mutations: {
@@ -18,20 +18,18 @@ let store = new Vuex.Store({
         SET_CARS: (state, data) => {
             state.cars = data
         },
-        SET_ORGANIZATIONS: (state, data) => {
+        SET_DRIVER: (state, data) => {
             state.organizations = data
         },
-        SET_USERS: (state, data) => {
+        SET_ORDERS: (state, data) => {
             state.users = data
         },
-        ADD_ONE_OFFICE: (state, data) => {
+        ADD_ONE_DRIVER: (state, data) => {
             state.offices.push(data)
         }
     },
     actions: {
         REGISTRATION({commit}, data){
-            
-
             return axios('http://localhost:8000/auth/users/', {
                 method: 'POST',
                 data
@@ -75,10 +73,10 @@ let store = new Vuex.Store({
                 
             })
         },
-        API_ORGANIZATIONS({commit}){
+        API_DRIVERS({commit}){
             
 
-            return axios('http://localhost:8000/organizations/', {
+            return axios('http://localhost:8000/drivers/', {
                 method: 'GET',
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token')
@@ -86,7 +84,7 @@ let store = new Vuex.Store({
             })
             .then(data => {
                 console.log(data)
-                    commit('SET_ORGANIZATIONS', data.data)
+                    commit('SET_DRIVERS', data.data)
                     
                 
                 return data;
@@ -96,10 +94,10 @@ let store = new Vuex.Store({
                 
             })
         },
-        API_USERS({commit}){
+        API_ORDERS({commit}){
             
 
-            return axios('http://localhost:8000/users/', {
+            return axios('http://localhost:8000/orders/', {
                 method: 'GET',
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token')
@@ -107,7 +105,7 @@ let store = new Vuex.Store({
             })
             .then(data => {
                 console.log(data)
-                    commit('SET_USERS', data.data)
+                    commit('SET_ORDERS', data.data)
                     
                 
                 return data;
@@ -160,8 +158,8 @@ let store = new Vuex.Store({
                 
             })
         },
-        ADD_ONE_OFFICE_ACTION({commit}, data){
-            commit('ADD_ONE_OFFICE', data)
+        ADD_ONE_CAR_ACTION({commit}, data){
+            commit('ADD_ONE_CAR', data)
         }
     },
     getters: {
@@ -171,8 +169,8 @@ let store = new Vuex.Store({
         GET_CARS(state){
             return state.cars
         },
-        GET_ORGANIZATIONS(state){
-            return state.organizations
+        GET_DRIVER(state){
+            return state.drivers
         },
         GET_USERS(state){
             return state.users
