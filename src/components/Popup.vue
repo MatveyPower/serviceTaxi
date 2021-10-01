@@ -6,7 +6,7 @@
             </span>
             <div class="modal-content">
                 <div :key="index" v-for="(item, index) in data">
-                    <label for="" v-show="hasProperties(index)">
+                    <label for="" v-show="hasProperties(index)" >
                         <span>Редактировать {{ options[index] }}: </span>
                         <input type="text" :value="item" :placeholder="item" />
                     </label>

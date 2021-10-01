@@ -1,13 +1,13 @@
 <template>
     <div>
         <main>
-            <Cars />
+            <Drivers />
         </main>
     </div>
 </template>
 
 <script>
-import Cars from "@/components/Cars"
+import Drivers from "@/components/Drivers"
 
 export default {
     data() {
@@ -18,7 +18,7 @@ export default {
 
     name: "Home",
     components: {
-        Cars,
+        Drivers,
     },
     methods: {
         EditCategori(id) {

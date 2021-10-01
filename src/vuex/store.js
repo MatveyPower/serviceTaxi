@@ -78,9 +78,6 @@ let store = new Vuex.Store({
 
             return axios('http://localhost:8000/drivers/', {
                 method: 'GET',
-                headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('token')
-                }
             })
             .then(data => {
                 console.log(data)

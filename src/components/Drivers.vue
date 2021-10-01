@@ -1,97 +1,20 @@
 <template>
     <div class="container">
-        <div class="sorting">
-            <SortingComponent
-                @sortedArray="
-                    (data) => {
-                        sortedArray = data.sortArray
-                    }
-                "
-                :sortName="'brand'"
-                :sortArray="cars"
-                :sortNameRus="'Марке'"
-            />
-            <SortingComponent
-                @sortedArray="
-                    (data) => {
-                        sortedArray = data.sortArray
-                    }
-                "
-                :sortName="'color'"
-                :sortArray="cars"
-                :sortNameRus="'Цвету'"
-            />
+        <div :key=index v-for="(driver, index) in drivers">
+            <driver/>
         </div>
-        <ul class="cars">
-            <li class="car_item head">
-                <span class="cars_item">Марка</span>
-                <span class="cars_item">Цвет</span>
-                <span class="cars_item">Гос. номер</span>
-                <div class="none">
-                    <span class="edit">
-                        <img
-                            height="20"
-                            width="20"
-                            src="@/assets/img/edit.png"
-                            alt=""
-                        />
-                    </span>
-                    <span class="trash">
-                        <img
-                            height="20"
-                            width="20"
-                            src="@/assets/img/trash.png"
-                            alt=""
-                        />
-                    </span>
-                </div>
-            </li>
-            <li
-                @click="openPopup(car)"
-                class="car_item"
-                v-for="car in sortedArray"
-                :key="car"
-            >
-                <span class="cars_item">{{ car.brand }}</span>
-                <span class="cars_item">{{ car.color }}</span>
-                <span class="cars_item numb">{{ car.state_number }}</span>
-                <div>
-                    <span class="edit">
-                        <img
-                            height="20"
-                            width="20"
-                            src="@/assets/img/edit.png"
-                            alt=""
-                        />
-                    </span>
-                    <span class="trash">
-                        <img
-                            height="20"
-                            width="20"
-                            src="@/assets/img/trash.png"
-                            alt=""
-                        />
-                    </span>
-                </div>
-            </li>
-        </ul>
-        <Popup
-            v-if="show"
-            @closePopup="show = false"
-            :data="item"
-            :type="'edit'"
-        />
     </div>
 </template>
 
 <script>
 import Popup from "./Popup.vue"
+import driver from "./driver.vue"
 import SortingComponent from "./SortingComponent.vue"
 import { mapActions, mapGetters } from "vuex"
 
 export default {
-    components: { SortingComponent, Popup },
-    name: "Cars",
+    components: { SortingComponent, Popup, driver },
+    name: "Drivers",
     data() {
         return {
             cars: [],
@@ -102,7 +25,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions(["API_CARS"]),
+        ...mapActions(["API_DRIVERS"]),
 
         openPopup(item) {
             this.item = item
@@ -110,13 +33,12 @@ export default {
         },
     },
     computed: {
-        ...mapGetters(["GET_CARS"]),
+        ...mapGetters(["GET_DRIVERS"]),
     },
     async mounted() {
-        await this.API_CARS()
+        await this.API_DRIVERS()
         this.sortedArray = this.GET_CARS
         this.cars = this.GET_CARS
-        // console.log(this.GET_CARS)
     },
 }
 </script>

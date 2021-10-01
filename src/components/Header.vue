@@ -8,12 +8,12 @@
                             Заказать такси
                         </li></router-link
                     >
-                    <router-link class="link" to="/cars">
+                    <router-link class="link" to="/drivers">
                         <li class="nav-list item">
                             Стать водителем
                         </li></router-link
                     >
-                    <router-link class="link" to="/cars"
+                    <router-link class="link" to="/coasts"
                         ><li class="nav-list item">Тарифы</li></router-link
                     >
                     <router-link class="link" to="/cars"
